@@ -1,7 +1,7 @@
 {
   "name": "module-13-challenge-orm",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the back-end of a shopping website",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,14 +11,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@work.github.com:coding-boot-camp/module-13-challenge-orm.git"
+    "url": "git+https://github.com/ohSweetWampum/E-Commerce-Back-End.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Matt Gibson",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.3"
   },
+  "bugs": {
+    "url": "https://github.com/ohSweetWampum/E-Commerce-Back-End/issues"
+  },
+  "homepage": "https://github.com/ohSweetWampum/E-Commerce-Back-End#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "dotenv": "^8.2.0",
