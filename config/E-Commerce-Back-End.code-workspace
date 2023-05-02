@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../E-Commerce-Back-End"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../db"
+		},
+		{
+			"path": "../models"
+		},
+		{
+			"path": "../routes"
+		},
+		{
+			"path": "../seeds"
+		}
+	],
+	"settings": {}
+}
