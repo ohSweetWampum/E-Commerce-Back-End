@@ -8,7 +8,8 @@
     "start": "node server.js",
     "watch": "nodemon server.js",
     "seed": "node seeds/index.js",
-    "schema": "mysql -u root -pP@ssw0rd123! < ./db/schema.sql"
+    "mysql":"//root:P@ssw0rd123!@localhost:3306/schema.sql"
+
   },
   "repository": {
     "type": "git",
