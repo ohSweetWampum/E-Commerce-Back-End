@@ -4,15 +4,19 @@ This is the back-end of a shopping website
 
 ## Website
 
-[Click here to watch a video demo](/Screen%20Recording%202023-05-04%20at%2011.50.52%20PM.mov)
+[Click here to watch a video demo](https://drive.google.com/file/d/1a_c-2zXfEfMxT7YLHuIsRBMbEaxQLjGk/view)
 
 ## Description
 
-This Note Taker App is a web application designed for creating, keeping track of, and deleting notes. It was built using Node.js and Express.js and Heroku, it also employs file-based storage (JSON). Key features include creating notes, viewing a list of saved notes, and deleting notes. Overall, this app offers a reliable note-taking solution, easily accessible and manageable, with a foundation suitable for future expansions and features such as making edits to existing notes.
+This app is a simple tool for managing an online store. It helps with adding, updating, and removing products, categories, and tags in a database. It uses popular web technologies like Express.js and MySQL to make things work smoothly. The app has an easy-to-use interface for developers to interact with the data and test how it works. Overall, it's a helpful tool for keeping an online store organized and up-to-date.
 
 ## Installation
 
-You need to have Node.js and Express.js installed. In your terminal, navigate to the folder that contains the server.js file and enter "npm start" in the command line.
+1. Need to install Node.js, MySQL2, Express.js, Sequelize, and Dotenv
+2. Creat and .env file with your credentials
+3. In command lin, enter "mysql -u root -p", then enter mysql password.
+4. Enter "source db/schema.sql;", then quit.
+5. Enter "npm run seed", the enter "npm start".
 
 ## Table of Contents
 
@@ -38,8 +42,8 @@ You need to have Node.js and Express.js installed. In your terminal, navigate to
 - Node.js
   [Learn about Node.js](https://nodejs.org/en)
 
-- Heroku
-  [Learn about Heroku](https://www.heroku.com/home)
+- MySQL2
+  [Learn about MySQL2](https://www.npmjs.com/package/mysql2)
 
 - Insomnia
   [Learn about Insomnia](https://insomnia.rest/)
@@ -47,20 +51,18 @@ You need to have Node.js and Express.js installed. In your terminal, navigate to
 - JavaScript
   [Learn about JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-- HTML
-  [Learn about HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- Sequelize
+  [Learn about Sequelize](https://sequelize.org/)
 
-- CSS
-  [Learn about CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- dotenv
+  [Learn about dotenv](https://www.npmjs.com/package/dotenv)
 
 - Git
   [Learn about Git](https://git-scm.com/)
 
 ## Usage
 
-1. Click the "Get Started" button
-2. Enter the notes title and then text contents, click the save icon in the upper right.
-3. Click the trash icon on an existing note to delete it
+This back-end app allows you to create, update, delete and get data on products, tags, and categories.
 
 # Demo
 
@@ -68,38 +70,51 @@ You need to have Node.js and Express.js installed. In your terminal, navigate to
 
 ## Code
 
-I wanted to highlight this code snippet because it shows a helper function in action, and helper functions can ber very useful. Helper functions offer many benefits, such as improved code reusability, organization, error handling, and testing. By encapsulating a file reading logic in a helper function, the same code can be reused across multiple routes. This separation duties simplifies debugging and maintenance. Centralizing file reading logic enables consistent error handling, and any changes made will affect all parts of the application using the helper function. Here I have an example of using a helper function ( readFromFile) inside the delete note route, but I use this same function else wher in the code.
+I wanted to highlight this code snippet because it's really what this app is all about, which is relationships, and we just recently learned this. This code snippet sets up relationships between four models: Product, Category, Tag, and ProductTag. Products belong to a single Category, while Categories can have multiple Products. Products and Tags have a many-to-many relationship, connected through the ProductTag model. The foreign keys for each relationship are specified, and deleting a Category causes associated Products to be removed.
 
 ```JavaScript
-// DELETE Route for a specific note
-notes.delete('/notes/:id', (req, res) => {
-  const noteId = req.params.id;
-  console.log(noteId);
+// import models
+const Product = require("./Product");
+const Category = require("./Category");
+const Tag = require("./Tag");
+const ProductTag = require("./ProductTag");
 
-  // Use the helper function to read from the file
-  readFromFile(dbPath)
-    .then((data) => JSON.parse(data))
-    .then((json) => {
-      // Make a new array of all notes except the one with the ID provided in the URL
-      const result = json.filter((note) => note.id !== noteId);
-
-      // Save that array to the filesystem using the helper function
-      writeToFile(dbPath, result);
-
-      // Respond to the DELETE request
-      res.json(`Item ${noteId} has been deleted `);
-    });
+// Products belongsTo Category
+Product.belongsTo(Category, {
+  foreignKey: "category_id",
+  onDelete: "CASCADE",
 });
+// Categories have many Products
+Category.hasMany(Product, {
+  foreignKey: "category_id",
+});
+// Products belongToMany Tags (through ProductTag)
+Product.belongsToMany(Tag, {
+  through: ProductTag,
+  foreignKey: "product_id",
+});
+// Tags belongToMany Products (through ProductTag)
+Tag.belongsToMany(Product, {
+  through: ProductTag,
+  foreignKey: "tag_id",
+});
+module.exports = {
+  Product,
+  Category,
+  Tag,
+  ProductTag,
+};
+
 
 ```
 
 ## Learning
 
-- Learned how to create an app on Heroku
-- Learned how to utilize route specific files and helper function files
-- learned how to use Express.js and Node.js
-- Learned how use middleware and port listeners
-- Furthered knowledge of destructuring objects
+- Handling CRUD operations
+- Sequelize ORM
+- Environment variables and configuration
+- API testing with Insomnia
+- MVC
 
 ## Author
 
@@ -111,14 +126,8 @@ Matthew Gibson
 
 ## Credits
 
-[www.geeksforgeeks.org](https://www.geeksforgeeks.org/what-are-the-helper-functions/)
-(Helper Functions)
-
-[www.itsolutionstuff.com](https://www.itsolutionstuff.com/post/how-to-create-separate-routes-file-in-node-jsexample.html)
-(route files)
-
-[expressjs.com](https://expressjs.com/en/guide/using-middleware.html)
-(Middleware)
+- Thanks to Manuel Nunes for helping me fix my database seeding problem
+- Thanks to all the instructors and the in-class examples/activities they provided were especially helpful for this application.
 
 ## Contributing
 
