@@ -4,7 +4,7 @@ This is the back-end of a shopping website
 
 ## Website
 
-[Click here to watch a video demo](https://mtg-note-taker.herokuapp.com/)
+[Click here to watch a video demo](/Screen%20Recording%202023-05-04%20at%2011.50.52%20PM.mov)
 
 ## Description
 
