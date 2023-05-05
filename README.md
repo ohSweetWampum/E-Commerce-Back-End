@@ -25,7 +25,7 @@ This app is a simple tool for managing an online store. It helps with adding, up
 - [Installation](#installation)
 - [Technology](#technology)
 - [Usage](#usage)
-- [Demo](#demo)
+- [Image](#image)
 - [Code](#code)
 - [Learning](#learning)
 - [Author](#author)
@@ -64,9 +64,9 @@ This app is a simple tool for managing an online store. It helps with adding, up
 
 This back-end app allows you to create, update, delete and get data on products, tags, and categories.
 
-# Demo
+# Image
 
-![Alt Text](/images/2023-04-28%2020.02.35.gif)
+![Alt Text](/Screenshot%202023-05-05%20at%2012.59.17%20AM.png)
 
 ## Code
 
